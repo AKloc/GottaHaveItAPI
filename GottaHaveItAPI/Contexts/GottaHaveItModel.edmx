@@ -1,0 +1,617 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GottaHaveItDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="ProfileImageUrl" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Channels">
+          <Key>
+            <PropertyRef Name="ChannelId" />
+          </Key>
+          <Property Name="ChannelId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ApplicationUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ChannelId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="StartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EndDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdentityRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar(max)" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="ApplicationUser_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="IdentityUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar(max)" />
+          <Property Name="ProviderKey" Type="nvarchar(max)" />
+          <Property Name="ApplicationUser_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="IdentityUserRoles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ApplicationUser_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="IdentityRole_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Subscriptions">
+          <Key>
+            <PropertyRef Name="SubscriptionId" />
+          </Key>
+          <Property Name="SubscriptionId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ChannelId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ApplicationUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Channels_dbo_ApplicationUsers_ApplicationUserId">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Channels" Type="Self.Channels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Channels">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Events_dbo_Channels_ChannelId">
+          <End Role="Channels" Type="Self.Channels" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channels">
+              <PropertyRef Name="ChannelId" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="ChannelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="0..1" />
+          <End Role="IdentityUserClaims" Type="Self.IdentityUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserClaims">
+              <PropertyRef Name="ApplicationUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="0..1" />
+          <End Role="IdentityUserLogins" Type="Self.IdentityUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserLogins">
+              <PropertyRef Name="ApplicationUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="0..1" />
+          <End Role="IdentityUserRoles" Type="Self.IdentityUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRoles">
+              <PropertyRef Name="ApplicationUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id">
+          <End Role="IdentityRoles" Type="Self.IdentityRoles" Multiplicity="0..1" />
+          <End Role="IdentityUserRoles" Type="Self.IdentityUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRoles">
+              <PropertyRef Name="IdentityRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subscriptions_dbo_ApplicationUsers_ApplicationUserId">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscriptions">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subscriptions_dbo_Channels_ChannelId">
+          <End Role="Channels" Type="Self.Channels" Multiplicity="0..1" />
+          <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channels">
+              <PropertyRef Name="ChannelId" />
+            </Principal>
+            <Dependent Role="Subscriptions">
+              <PropertyRef Name="ChannelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GottaHaveItDataModelStoreContainer">
+          <EntitySet Name="ApplicationUsers" EntityType="Self.ApplicationUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Channels" EntityType="Self.Channels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityRoles" EntityType="Self.IdentityRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserClaims" EntityType="Self.IdentityUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserLogins" EntityType="Self.IdentityUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserRoles" EntityType="Self.IdentityUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subscriptions" EntityType="Self.Subscriptions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Channels_dbo_ApplicationUsers_ApplicationUserId" Association="Self.FK_dbo_Channels_dbo_ApplicationUsers_ApplicationUserId">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="Channels" EntitySet="Channels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Events_dbo_Channels_ChannelId" Association="Self.FK_dbo_Events_dbo_Channels_ChannelId">
+            <End Role="Channels" EntitySet="Channels" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id" Association="Self.FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="IdentityUserClaims" EntitySet="IdentityUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id" Association="Self.FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="IdentityUserLogins" EntitySet="IdentityUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id" Association="Self.FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="IdentityUserRoles" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id" Association="Self.FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id">
+            <End Role="IdentityRoles" EntitySet="IdentityRoles" />
+            <End Role="IdentityUserRoles" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subscriptions_dbo_ApplicationUsers_ApplicationUserId" Association="Self.FK_dbo_Subscriptions_dbo_ApplicationUsers_ApplicationUserId">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subscriptions_dbo_Channels_ChannelId" Association="Self.FK_dbo_Subscriptions_dbo_Channels_ChannelId">
+            <End Role="Channels" EntitySet="Channels" />
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GottaHaveItDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplicationUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Channels" Relationship="Self.FK_dbo_Channels_dbo_ApplicationUsers_ApplicationUserId" FromRole="ApplicationUsers" ToRole="Channels" />
+          <NavigationProperty Name="IdentityUserClaims" Relationship="Self.FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id" FromRole="ApplicationUsers" ToRole="IdentityUserClaims" />
+          <NavigationProperty Name="IdentityUserLogins" Relationship="Self.FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id" FromRole="ApplicationUsers" ToRole="IdentityUserLogins" />
+          <NavigationProperty Name="IdentityUserRoles" Relationship="Self.FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id" FromRole="ApplicationUsers" ToRole="IdentityUserRoles" />
+          <NavigationProperty Name="Subscriptions" Relationship="Self.FK_dbo_Subscriptions_dbo_ApplicationUsers_ApplicationUserId" FromRole="ApplicationUsers" ToRole="Subscriptions" />
+        </EntityType>
+        <EntityType Name="Channel">
+          <Key>
+            <PropertyRef Name="ChannelId" />
+          </Key>
+          <Property Name="ChannelId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ApplicationUser" Relationship="Self.FK_dbo_Channels_dbo_ApplicationUsers_ApplicationUserId" FromRole="Channels" ToRole="ApplicationUsers" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_dbo_Events_dbo_Channels_ChannelId" FromRole="Channels" ToRole="Events" />
+          <NavigationProperty Name="Subscriptions" Relationship="Self.FK_dbo_Subscriptions_dbo_Channels_ChannelId" FromRole="Channels" ToRole="Subscriptions" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChannelId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Channel" Relationship="Self.FK_dbo_Events_dbo_Channels_ChannelId" FromRole="Events" ToRole="Channels" />
+        </EntityType>
+        <EntityType Name="IdentityRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IdentityUserRoles" Relationship="Self.FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id" FromRole="IdentityRoles" ToRole="IdentityUserRoles" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ApplicationUser" Relationship="Self.FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id" FromRole="IdentityUserClaims" ToRole="ApplicationUsers" />
+        </EntityType>
+        <EntityType Name="IdentityUserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ApplicationUser" Relationship="Self.FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id" FromRole="IdentityUserLogins" ToRole="ApplicationUsers" />
+        </EntityType>
+        <EntityType Name="IdentityUserRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityRole_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ApplicationUser" Relationship="Self.FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id" FromRole="IdentityUserRoles" ToRole="ApplicationUsers" />
+          <NavigationProperty Name="IdentityRole" Relationship="Self.FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id" FromRole="IdentityUserRoles" ToRole="IdentityRoles" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="SubscriptionId" />
+          </Key>
+          <Property Name="SubscriptionId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChannelId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ApplicationUser" Relationship="Self.FK_dbo_Subscriptions_dbo_ApplicationUsers_ApplicationUserId" FromRole="Subscriptions" ToRole="ApplicationUsers" />
+          <NavigationProperty Name="Channel" Relationship="Self.FK_dbo_Subscriptions_dbo_Channels_ChannelId" FromRole="Subscriptions" ToRole="Channels" />
+        </EntityType>
+        <Association Name="FK_dbo_Channels_dbo_ApplicationUsers_ApplicationUserId">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Channels" Type="Self.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Channels">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUser" Multiplicity="0..1" />
+          <End Role="IdentityUserClaims" Type="Self.IdentityUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserClaims">
+              <PropertyRef Name="ApplicationUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUser" Multiplicity="0..1" />
+          <End Role="IdentityUserLogins" Type="Self.IdentityUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserLogins">
+              <PropertyRef Name="ApplicationUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUser" Multiplicity="0..1" />
+          <End Role="IdentityUserRoles" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRoles">
+              <PropertyRef Name="ApplicationUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subscriptions_dbo_ApplicationUsers_ApplicationUserId">
+          <End Role="ApplicationUsers" Type="Self.ApplicationUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subscriptions" Type="Self.Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscriptions">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Events_dbo_Channels_ChannelId">
+          <End Role="Channels" Type="Self.Channel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channels">
+              <PropertyRef Name="ChannelId" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="ChannelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subscriptions_dbo_Channels_ChannelId">
+          <End Role="Channels" Type="Self.Channel" Multiplicity="0..1" />
+          <End Role="Subscriptions" Type="Self.Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channels">
+              <PropertyRef Name="ChannelId" />
+            </Principal>
+            <Dependent Role="Subscriptions">
+              <PropertyRef Name="ChannelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id">
+          <End Role="IdentityRoles" Type="Self.IdentityRole" Multiplicity="0..1" />
+          <End Role="IdentityUserRoles" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRoles">
+              <PropertyRef Name="IdentityRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntitiesDBConnection" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationUsers" EntityType="Self.ApplicationUser" />
+          <EntitySet Name="Channels" EntityType="Self.Channel" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="IdentityRoles" EntityType="Self.IdentityRole" />
+          <EntitySet Name="IdentityUserClaims" EntityType="Self.IdentityUserClaim" />
+          <EntitySet Name="IdentityUserLogins" EntityType="Self.IdentityUserLogin" />
+          <EntitySet Name="IdentityUserRoles" EntityType="Self.IdentityUserRole" />
+          <EntitySet Name="Subscriptions" EntityType="Self.Subscription" />
+          <AssociationSet Name="FK_dbo_Channels_dbo_ApplicationUsers_ApplicationUserId" Association="Self.FK_dbo_Channels_dbo_ApplicationUsers_ApplicationUserId">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="Channels" EntitySet="Channels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id" Association="Self.FK_dbo_IdentityUserClaims_dbo_ApplicationUsers_ApplicationUser_Id">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="IdentityUserClaims" EntitySet="IdentityUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id" Association="Self.FK_dbo_IdentityUserLogins_dbo_ApplicationUsers_ApplicationUser_Id">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="IdentityUserLogins" EntitySet="IdentityUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id" Association="Self.FK_dbo_IdentityUserRoles_dbo_ApplicationUsers_ApplicationUser_Id">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="IdentityUserRoles" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subscriptions_dbo_ApplicationUsers_ApplicationUserId" Association="Self.FK_dbo_Subscriptions_dbo_ApplicationUsers_ApplicationUserId">
+            <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Events_dbo_Channels_ChannelId" Association="Self.FK_dbo_Events_dbo_Channels_ChannelId">
+            <End Role="Channels" EntitySet="Channels" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subscriptions_dbo_Channels_ChannelId" Association="Self.FK_dbo_Subscriptions_dbo_Channels_ChannelId">
+            <End Role="Channels" EntitySet="Channels" />
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id" Association="Self.FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id">
+            <End Role="IdentityRoles" EntitySet="IdentityRoles" />
+            <End Role="IdentityUserRoles" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GottaHaveItDataModelStoreContainer" CdmEntityContainer="EntitiesDBConnection">
+          <EntitySetMapping Name="ApplicationUsers">
+            <EntityTypeMapping TypeName="GottaHaveItDataModel.ApplicationUser">
+              <MappingFragment StoreEntitySet="ApplicationUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ProfileImageUrl" ColumnName="ProfileImageUrl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Channels">
+            <EntityTypeMapping TypeName="GottaHaveItDataModel.Channel">
+              <MappingFragment StoreEntitySet="Channels">
+                <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
+                <ScalarProperty Name="ApplicationUserId" ColumnName="ApplicationUserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="GottaHaveItDataModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityRoles">
+            <EntityTypeMapping TypeName="GottaHaveItDataModel.IdentityRole">
+              <MappingFragment StoreEntitySet="IdentityRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserClaims">
+            <EntityTypeMapping TypeName="GottaHaveItDataModel.IdentityUserClaim">
+              <MappingFragment StoreEntitySet="IdentityUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ApplicationUser_Id" ColumnName="ApplicationUser_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserLogins">
+            <EntityTypeMapping TypeName="GottaHaveItDataModel.IdentityUserLogin">
+              <MappingFragment StoreEntitySet="IdentityUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="ApplicationUser_Id" ColumnName="ApplicationUser_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserRoles">
+            <EntityTypeMapping TypeName="GottaHaveItDataModel.IdentityUserRole">
+              <MappingFragment StoreEntitySet="IdentityUserRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationUser_Id" ColumnName="ApplicationUser_Id" />
+                <ScalarProperty Name="IdentityRole_Id" ColumnName="IdentityRole_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscriptions">
+            <EntityTypeMapping TypeName="GottaHaveItDataModel.Subscription">
+              <MappingFragment StoreEntitySet="Subscriptions">
+                <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+                <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
+                <ScalarProperty Name="ApplicationUserId" ColumnName="ApplicationUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

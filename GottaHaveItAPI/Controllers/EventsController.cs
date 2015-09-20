@@ -17,9 +17,20 @@ namespace GottaHaveItAPI.Controllers
             new Event { Id = 3, ChannelId = 1, Name = "TestName 3", Description = "From Controller Test Array", Location = "Location Z", StartDateTime = DateTime.Now, EndDateTime = DateTime.Now.AddDays(5) }
         };
 
-        public IEnumerable<Event> GetAllEvents()
+        public IHttpActionResult GetAllEvents()
         {
-            return events;
+            //return events;
+            using (Contexts.EntitiesDBConnection ctx = new Contexts.EntitiesDBConnection())
+            {
+                //var query = from e in ctx.Events
+                   //         select e;
+
+                var query = ctx.Events.ToList();
+
+                return Ok(query);
+            }
+
+            
         }
 
 
