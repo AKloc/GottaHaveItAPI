@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GottaHaveItAPI", "GottaHave
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GottaHaveItAPI.Tests", "GottaHaveItAPI.Tests\GottaHaveItAPI.Tests.csproj", "{1E6D98B2-18CE-4C58-84DE-731AEE92AFDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GottaHaveItWebUI", "GottaHaveItWebUI\GottaHaveItWebUI.csproj", "{53F64E83-A4C6-47F0-9F4C-84366FB52AD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GottaHaveItWebUI.Tests", "GottaHaveItWebUI.Tests\GottaHaveItWebUI.Tests.csproj", "{EE75008D-2EE4-4068-A2E9-6C431A4CA5FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{1E6D98B2-18CE-4C58-84DE-731AEE92AFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E6D98B2-18CE-4C58-84DE-731AEE92AFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E6D98B2-18CE-4C58-84DE-731AEE92AFDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53F64E83-A4C6-47F0-9F4C-84366FB52AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53F64E83-A4C6-47F0-9F4C-84366FB52AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53F64E83-A4C6-47F0-9F4C-84366FB52AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53F64E83-A4C6-47F0-9F4C-84366FB52AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE75008D-2EE4-4068-A2E9-6C431A4CA5FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE75008D-2EE4-4068-A2E9-6C431A4CA5FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE75008D-2EE4-4068-A2E9-6C431A4CA5FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE75008D-2EE4-4068-A2E9-6C431A4CA5FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
