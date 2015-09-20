@@ -18,6 +18,8 @@ namespace GottaHaveItAPI.Contexts
         public EntitiesDBConnection()
             : base("name=EntitiesDBConnection")
         {
+            // Don't automatically load related data.
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
