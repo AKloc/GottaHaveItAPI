@@ -9,15 +9,10 @@ using GottaHaveItAPI.Models;
 
 namespace GottaHaveItAPI.Controllers
 {
+    //[Route("api/[controller]")]
     public class EventsController : ApiController
     {
-        Event[] events = new Event[]
-        {
-            new Event { Id = 1, ChannelId = 1, Name = "TestName 1", Description = "From Controller Test Array", Location = "Location X", StartDateTime = DateTime.Now, EndDateTime = DateTime.Now.AddDays(5) },
-            new Event { Id = 2, ChannelId = 1, Name = "TestName 2", Description = "From Controller Test Array", Location = "Location Y", StartDateTime = DateTime.Now, EndDateTime = DateTime.Now.AddDays(5) },
-            new Event { Id = 3, ChannelId = 1, Name = "TestName 3", Description = "From Controller Test Array", Location = "Location Z", StartDateTime = DateTime.Now, EndDateTime = DateTime.Now.AddDays(5) }
-        };
-
+        [HttpGet]
         public IHttpActionResult GetAllEvents()
         {
             //return events;
@@ -34,15 +29,23 @@ namespace GottaHaveItAPI.Controllers
             
         }
         
-
-        public IHttpActionResult GetProduct(int id)
+        [HttpGet]
+        public IHttpActionResult Get(string id)
         {
-            var selectedEvent = events.FirstOrDefault((p) => p.Id == id);
-            if (selectedEvent == null)
+            using (Contexts.EntitiesDBConnection ctx = new Contexts.EntitiesDBConnection())
             {
-                return NotFound();
+                //var query = from e in ctx.Events
+                //         select e;
+
+                var query = ctx.Events.FirstOrDefault((p) => p.EventId == id);
+
+                if(query == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(query);
             }
-            return Ok(selectedEvent);
         }
     }
 }

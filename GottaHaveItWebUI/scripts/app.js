@@ -3,8 +3,7 @@
 
         var Events;
 
-        $http.get("/api/events").success(function (data)
-        {
+        $http.get("http://localhost:54791/api/events").success(function (data) {
             $scope.Events = data;
         });
     });
