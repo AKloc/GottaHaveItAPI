@@ -5,10 +5,76 @@
     <title></title>
     <meta charset="utf-8" />
 
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script src="scripts/jquery-1.9.1.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/app.js"></script>    
 </head>
 <body>
-    {{5+5}}
+    <!-- HEADER CONTENT -->
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#" data-ytta-id="-">Gotta Have It</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#" data-ytta-id="-">Events happening near you <span class="sr-only">(current)</span><span class="badge">42</span></a></li>
+                        <li><a href="#" data-ytta-id="-">Browse channels <span class="badge">12</span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-ytta-id="-">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" data-ytta-id="-">Action</a></li>
+                                <li><a href="#" data-ytta-id="-">Another action</a></li>
+                                <li><a href="#" data-ytta-id="-">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" data-ytta-id="-">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" data-ytta-id="-">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Find events">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" data-ytta-id="-">Link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- END HEADER CONTENT -->
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>What's Gotta Have it?</h1>
+            <p>It's an x y and z.</p>
+            <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- MAIN CONTENT -->
+    <div id="mainContent">
+        Here's the content.
+    </div>
+    <!-- END MAIN CONTENT-->
 </body>
 </html>
