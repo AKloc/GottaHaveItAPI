@@ -91,21 +91,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="partials\partial-home.html" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\Site\app.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Contexts\GottaHaveItModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GottaHaveItModel.edmx</DependentUpon>
-      <LastGenOutput>GottaHaveItModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Contexts\GottaHaveItModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GottaHaveItModel.edmx</DependentUpon>
-      <LastGenOutput>GottaHaveItModel.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
@@ -902,65 +895,26 @@
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\Site\SCRATCHPAD.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Contexts\ApplicationUser.cs">
-      <DependentUpon>GottaHaveItModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\Channel.cs">
-      <DependentUpon>GottaHaveItModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\Event.cs">
-      <DependentUpon>GottaHaveItModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\GottaHaveItModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GottaHaveItModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\GottaHaveItModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GottaHaveItModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\GottaHaveItModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GottaHaveItModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\IdentityRole.cs">
-      <DependentUpon>GottaHaveItModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\IdentityUserClaim.cs">
-      <DependentUpon>GottaHaveItModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\IdentityUserLogin.cs">
-      <DependentUpon>GottaHaveItModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\IdentityUserRole.cs">
-      <DependentUpon>GottaHaveItModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\Subscription.cs">
-      <DependentUpon>GottaHaveItModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Contexts\DatabaseInitializer.cs" />
+    <Compile Include="Contexts\GottaHaveItContext.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Channel.cs" />
+    <Compile Include="Models\ChannelMembership.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Subscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Contexts\GottaHaveItModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GottaHaveItModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Contexts\GottaHaveItModel.edmx.diagram">
-      <DependentUpon>GottaHaveItModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Scripts\version.json" />
     <None Include="Web.Debug.config">
@@ -972,6 +926,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="pages\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css">
 
     <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-ui-router.min.js"></script>
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 
@@ -59,24 +60,14 @@
         </nav>
     </header>
     <!-- END HEADER CONTENT -->
-
-
-
-    <div class="container" ng-controller="EventsController as eventsCtrl">
-        <div class="jumbotron">
-            <h1>What's Gotta Have it?</h1>
-            <p>It's an x y and z.</p>
-            <p>So far, we've got these!</p>
-            <div ng-repeat="event in Events">
-                Event: {{event.Name}}
-            </div>
-            <p><a class="btn btn-primary btn-lg">Learn more</a></p>
-        </div>
-    </div>
+    
 
     <!-- MAIN CONTENT -->
-    <div id="mainContent">
-        Here's the content.
+    <div id="mainContent" class="container">
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ui-view></div>
+
     </div>
     <!-- END MAIN CONTENT-->
 

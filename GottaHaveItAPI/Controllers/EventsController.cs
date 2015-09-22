@@ -9,17 +9,16 @@ using GottaHaveItAPI.Models;
 
 namespace GottaHaveItAPI.Controllers
 {
-    //[Route("api/[controller]")]
     public class EventsController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult GetAllEvents()
+        public IHttpActionResult Get()
         {
             //return events;
-            using (Contexts.EntitiesDBConnection ctx = new Contexts.EntitiesDBConnection())
+            using (Contexts.GottaHaveItContext ctx = new Contexts.GottaHaveItContext())
             {
                 //var query = from e in ctx.Events
-                   //         select e;
+                //            select e;
 
                 var query = ctx.Events.ToList();
 
@@ -30,14 +29,14 @@ namespace GottaHaveItAPI.Controllers
         }
         
         [HttpGet]
-        public IHttpActionResult Get(string id)
+        public IHttpActionResult Get(int id)
         {
-            using (Contexts.EntitiesDBConnection ctx = new Contexts.EntitiesDBConnection())
+            using (Contexts.GottaHaveItContext ctx = new Contexts.GottaHaveItContext())
             {
                 //var query = from e in ctx.Events
                 //         select e;
 
-                var query = ctx.Events.FirstOrDefault((p) => p.EventId == id);
+                var query = ctx.Events.FirstOrDefault((p) => p.ID == id);
 
                 if(query == null)
                 {
