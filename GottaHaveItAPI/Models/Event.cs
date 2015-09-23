@@ -13,7 +13,8 @@ namespace GottaHaveItAPI.Models
         public string Description { get; set; }
         public int LocationID { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public DateTime? LastEditted { get; set; }
         public bool IsActive { get; set; }
 
         public virtual Location Location { get; set; }

@@ -14,7 +14,8 @@ namespace GottaHaveItAPI.Contexts
         public DbSet<Event> Events { get; set; }
         public DbSet<Channel> Channels { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
-        public DbSet<Location> Locations { get; set; }       
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<ChannelMembership> ChannelMemberships { get; set; }
     }
 
 

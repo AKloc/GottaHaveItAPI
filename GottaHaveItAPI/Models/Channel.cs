@@ -11,8 +11,8 @@ namespace GottaHaveItAPI.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime LastEditted { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public DateTime? LastEditted { get; set; }
         public bool IsActive { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
