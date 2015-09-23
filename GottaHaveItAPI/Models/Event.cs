@@ -12,6 +12,7 @@ namespace GottaHaveItAPI.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public int LocationID { get; set; }
+        public string ImageUrl { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public DateTime? LastEditted { get; set; }

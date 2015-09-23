@@ -54,6 +54,7 @@ namespace GottaHaveItAPI.Contexts
                     Name = "Book Sale",
                     Description = "Our school is throwing a fund-raiser, we'd love to see you come out!",
                     LocationID = locations["Clarence High School"],
+                    ImageUrl = "http://www.ifpl.org/friends/images/professor.jpg",
                     StartDate = DateTime.Parse("8/15/2016 2:00 PM"),
                     EndDate = DateTime.Parse("8/15/2016 2:00 PM")
                 },
@@ -62,6 +63,7 @@ namespace GottaHaveItAPI.Contexts
                     Name = "Freshman Orientation",
                     Description = "It's that time of year! We're excited to meet all of our new students for the 2016 school year. The high school will be holding an orientation day for incoming freshman. They will be assigned lockers, given their schedules, and shown where their classrooms are in the building. We look forward to meeting new students and parents!",
                     LocationID = locations["Clarence High School"],
+                    ImageUrl = "http://www.clarenceschools.org/cms/lib/NY01913587/Centricity/Template/GlobalAssets/images///Logo/CCSD-Logo-color-no-circle-h-137px.png",
                     StartDate = DateTime.Parse("8/25/2016 10:00 AM"),
                     EndDate = DateTime.Parse("8/25/2016 1:00 PM")
                 },
@@ -70,6 +72,7 @@ namespace GottaHaveItAPI.Contexts
                     Name = "Sub Sale",
                     Description = "Help keep our band program strong - volunteers needed for the annual Clarence bands sub sale.",
                     LocationID = locations["Clarence High School"],
+                    ImageUrl = "https://www.get-go.com/GetGoKitchen/Image/italianSub.jpg",
                     StartDate = DateTime.Parse("8/29/2016 7:00 AM"),
                     EndDate = DateTime.Parse("8/29/2016 9:00 PM")
                 },
@@ -79,7 +82,8 @@ namespace GottaHaveItAPI.Contexts
                     Description = "In honor of something something something, Chef's will be offering our (in)famous spaghetti parmesean meals for just 5$ a plate. No coupon required.",
                     LocationID = locations["Chef's Restaurant"],
                     StartDate = DateTime.Parse("8/18/2016 6:00 PM"),
-                    EndDate = DateTime.Parse("8/18/2016 10:00 PM")
+                    EndDate = DateTime.Parse("8/18/2016 10:00 PM"),
+                    ImageUrl = "http://www.ilovechefs.dreamhosters.com/wp-content/uploads/2013/04/Chefs_web-300x241.png"
                 },
                 new Event
                 {
@@ -87,7 +91,8 @@ namespace GottaHaveItAPI.Contexts
                     Description = "Tickets are still available at the First Niagara Center box office, etc etc etc",
                     LocationID = locations["First Niagara Center"],
                     StartDate = DateTime.Parse("9/18/2016 7:00 PM"),
-                    EndDate = DateTime.Parse("9/18/2016 11:00 PM")
+                    EndDate = DateTime.Parse("9/18/2016 11:00 PM"),
+                    ImageUrl = "http://www.nhlhockeyarenas.com/images/Buffalo-Sabres-Logo.gif"
                 },
                 new Event
                 {
@@ -95,7 +100,8 @@ namespace GottaHaveItAPI.Contexts
                     Description = "Tickets are still available at the First Niagara Center box office, etc etc etc",
                     LocationID = locations["First Niagara Center"],
                     StartDate = DateTime.Parse("9/21/2016 7:00 PM"),
-                    EndDate = DateTime.Parse("9/21/2016 11:00 PM")
+                    EndDate = DateTime.Parse("9/21/2016 11:00 PM"),
+                    ImageUrl = "http://www.nhlhockeyarenas.com/images/Buffalo-Sabres-Logo.gif"
                 },
                 new Event
                 {
@@ -103,7 +109,8 @@ namespace GottaHaveItAPI.Contexts
                     Description = "B O X ! Tickets are still available at the First Niagara Center box office, etc etc etc",
                     LocationID = locations["First Niagara Center"],
                     StartDate = DateTime.Parse("9/19/2016 7:00 PM"),
-                    EndDate = DateTime.Parse("9/19/2016 11:00 PM")
+                    EndDate = DateTime.Parse("9/19/2016 11:00 PM"),
+                    ImageUrl = "http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/0024/6268/brand.gif?itok=rHSarLBk"
                 }
             };
 
@@ -119,18 +126,21 @@ namespace GottaHaveItAPI.Contexts
                 {
                     Name = "Fund Raisers",
                     Description = "This channel contains all of Clarence High School's fund raising activities. Subscribe and help keep our school at the top!",
+                    ImageUrl = "http://www.clarenceschools.org/cms/lib/NY01913587/Centricity/Template/GlobalAssets/images///Logo/CCSD-Logo-color-no-circle-h-137px.png",
                     DateCreated = DateTime.Now
                 },
                 new Channel
                 {
                     Name = "Buffalo Sabres Home Games",
                     Description = "Never miss a home Sabres game!",
+                    ImageUrl = "http://www.nhlhockeyarenas.com/images/Buffalo-Sabres-Logo.gif",
                     DateCreated = DateTime.Now
                 },
                 new Channel
                 {
                     Name = "Buffalo Bandits Home Games",
                     Description = "Never miss a home Bandits game!",
+                    ImageUrl = "http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/0024/6268/brand.gif?itok=rHSarLBk",
                     DateCreated = DateTime.Now
                 },
                 new Channel

@@ -20,7 +20,10 @@ namespace GottaHaveItAPI.Controllers
                 //var query = from e in ctx.Events
                 //            select e;
 
-                var query = ctx.Events.ToList();
+                var query = ctx.Events
+                    .Include(e => e.Location)
+                    //.Include(e => e.)
+                    .ToList();
 
                 return Ok(query);
             }

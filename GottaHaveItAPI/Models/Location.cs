@@ -16,6 +16,7 @@ namespace GottaHaveItAPI.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
+        public string ImageUrl { get; set; }
         public bool IsActive { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
