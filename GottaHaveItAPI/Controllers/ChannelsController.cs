@@ -9,23 +9,23 @@ using GottaHaveItAPI.Models;
 
 namespace GottaHaveItAPI.Controllers
 {
-    public class EventsController : ApiController
+    public class ChannelsController : ApiController
     {
         [HttpGet]
         public IHttpActionResult Get()
         {
             using (Contexts.GottaHaveItContext ctx = new Contexts.GottaHaveItContext())
             {
-                var query = ctx.Events
-                    .Include(e => e.Location)
+                var query = ctx.Channels
+                    .Include(c => c.Events)
                     //.Include(e => e.)
                     .ToList();
 
                 return Ok(query);
             }
-            
+
         }
-        
+
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
@@ -34,9 +34,9 @@ namespace GottaHaveItAPI.Controllers
                 //var query = from e in ctx.Events
                 //         select e;
 
-                var query = ctx.Events.FirstOrDefault((p) => p.ID == id);
+                var query = ctx.Channels.FirstOrDefault((c) => c.ID == id);
 
-                if(query == null)
+                if (query == null)
                 {
                     return NotFound();
                 }

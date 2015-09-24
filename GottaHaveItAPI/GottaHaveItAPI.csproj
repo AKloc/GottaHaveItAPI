@@ -92,7 +92,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\site.css" />
+    <Content Include="partials\partial-channels.html" />
+    <Content Include="partials\partial-events.html" />
     <Content Include="partials\partial-home.html" />
+    <Content Include="partials\partial-search.html" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\Site\app.js" />
@@ -103,7 +106,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="index2.html" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -903,7 +905,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Contexts\DatabaseInitializer.cs" />
     <Compile Include="Contexts\GottaHaveItContext.cs" />
+    <Compile Include="Controllers\ChannelsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
