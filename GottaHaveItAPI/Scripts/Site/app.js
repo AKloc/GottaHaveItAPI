@@ -21,8 +21,15 @@ gottaHaveItApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: '/partials/partial-events.html',
             controller: 'EventsController'
         })
+        /*
         .state('search', {
             url: '/search',
+            templateUrl: '/partials/partial-search.html',
+            controller: 'SearchController'
+        })
+        */
+        .state('searchDetails', {
+            url: '/search/{searchQuery}',
             templateUrl: '/partials/partial-search.html',
             controller: 'SearchController'
         })
@@ -32,11 +39,17 @@ gottaHaveItApp.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 
-gottaHaveItApp.controller('HomeController', function ($scope, $http, $location) {
-    $scope.ChangeRoute = function (hash) {
-        $location.path(hash);
-    }
-    
+gottaHaveItApp.controller('NavBarController', function ($scope, $http, $location) {
+    $scope.ChangeRoute = function (newPath) {
+        $location.path(newPath);
+    };
+
+    $http.get("/api/events").success(function (data) {
+        $scope.Events = data;
+    });
+});
+
+gottaHaveItApp.controller('HomeController', function ($scope, $http, $location) {    
     $http.get("/api/events").success(function (data) {
         $scope.Events = data;
     });
@@ -54,7 +67,18 @@ gottaHaveItApp.controller('ChannelsController', function ($scope, $http) {
     });
 });
 
-gottaHaveItApp.controller('SearchController', function ($scope, $http) {
+gottaHaveItApp.controller('SearchController', function ($scope, $http, $stateParams) {
+    var searchQuery = $stateParams.searchQuery;
+
+    $http.get("/api/search/" + searchQuery).success(function (data) {
+        $scope.SearchResults = data;
+    });
+});
+
+gottaHaveItApp.controller('SearchControllerDetails', function ($scope, $http, $stateParams) {
+
+    var check = $stateParams.searchQuery;
+
     $http.get("/api/search").success(function (data) {
         $scope.SearchResults = data;
     });

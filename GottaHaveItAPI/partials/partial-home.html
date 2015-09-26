@@ -19,9 +19,9 @@
     <div class="col-sm-6 col-md-4" ng-repeat="event in Events">
         <div class="thumbnail">
             <img src="{{event.ImageUrl}}" alt="{{event.Name}}" class="img-rounded" style="max-width:200px;max-height:200px;">
-            <div class="caption">
+            <div>
                 <h3>{{event.Name}}</h3>
-                <p><h5>{{event.Description}}</h5></p>
+                <div>{{event.Description}}</div>
                 <p>
                     <a href="#" class="btn btn-primary" role="button" style="width:100%">Learn more about this event</a>
                     <br />

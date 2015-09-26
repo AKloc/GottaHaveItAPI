@@ -3,9 +3,18 @@
     <li class="active">Search</li>
 </ol>
 
-<div ng-repeat="searchResult in SearchResults">
-    Search Result Name: {{searchResult.Name}}
+Search Results.
+
+<div ng-repeat="eventResult in SearchResults.eventResults">
+    Search Result Name: {{eventResult.Name}}
     <br />
-    Search Result Description: {{searchResult.Description}}
+    Search Result Description: {{eventResult.Description}}
+    <p></p>
+</div>
+<p></p>
+<div ng-repeat="channelResult in SearchResults.channelResults">
+    Search Result Name: {{channelResult.Name}}
+    <br />
+    Search Result Description: {{channelResult.Description}}
     <p></p>
 </div>

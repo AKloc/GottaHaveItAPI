@@ -12,6 +12,7 @@ namespace GottaHaveItAPI.Controllers
     public class EventsController : ApiController
     {
         [HttpGet]
+        [Route("api/events/")]
         public IHttpActionResult Get()
         {
             using (Contexts.GottaHaveItContext ctx = new Contexts.GottaHaveItContext())
@@ -27,6 +28,7 @@ namespace GottaHaveItAPI.Controllers
         }
         
         [HttpGet]
+        [Route("api/events/{id}")]
         public IHttpActionResult Get(int id)
         {
             using (Contexts.GottaHaveItContext ctx = new Contexts.GottaHaveItContext())
