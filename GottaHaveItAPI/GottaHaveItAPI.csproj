@@ -93,8 +93,11 @@
   <ItemGroup>
     <Content Include="Content\site.css" />
     <Content Include="partials\partial-channels.html" />
+    <Content Include="partials\partial-locationDetails.html" />
+    <Content Include="partials\partial-eventDetails.html" />
     <Content Include="partials\partial-events.html" />
     <Content Include="partials\partial-home.html" />
+    <Content Include="partials\partial-locations.html" />
     <Content Include="partials\partial-search.html" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
@@ -907,6 +910,7 @@
     <Compile Include="Contexts\GottaHaveItContext.cs" />
     <Compile Include="Controllers\ChannelsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

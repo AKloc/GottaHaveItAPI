@@ -36,9 +36,13 @@ namespace GottaHaveItAPI.Controllers
                 //var query = from e in ctx.Events
                 //         select e;
 
-                var query = ctx.Events.FirstOrDefault((p) => p.ID == id);
 
-                if(query == null)
+                var query = ctx.Events
+                .Include(e => e.Location)
+                //.Include(e => e.)
+                .FirstOrDefault((e) => e.ID == id); 
+                
+                if (query == null)
                 {
                     return NotFound();
                 }

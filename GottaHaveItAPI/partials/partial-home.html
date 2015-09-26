@@ -23,9 +23,9 @@
                 <h3>{{event.Name}}</h3>
                 <div>{{event.Description}}</div>
                 <p>
-                    <a href="#" class="btn btn-primary" role="button" style="width:100%">Learn more about this event</a>
+                    <a href="#/events/{{event.ID}}" class="btn btn-primary" role="button" style="width:100%">Learn more about this event</a>
                     <br />
-                    <a href="#" class="btn btn-default" role="button" style="width:100%">More from {{event.Location.Name}}</a>
+                    <a href="#/locations/{{event.LocationID}}" class="btn btn-default" role="button" style="width:100%">More from {{event.Location.Name}}</a>
                 </p>
             </div>
         </div>

@@ -1,0 +1,13 @@
+﻿<ol class="breadcrumb">
+    <li><a href="#/home">Home</a></li>
+    <li><a href="#/events">Events</a></li>
+    <li class="active">Event Details</li>
+</ol>
+
+<div>
+    Event Name: {{Event.Name}}
+    <br />
+    Event Description: {{Event.Description}}
+    <br />
+    Event Location: <a href="#/locations/{{Event.Location.ID}}">{{Event.Location.Name}}</a>
+</div>

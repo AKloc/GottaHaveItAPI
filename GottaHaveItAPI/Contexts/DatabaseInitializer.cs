@@ -33,9 +33,9 @@ namespace GottaHaveItAPI.Contexts
         {
             var locations = new List<Location>
             {
-                new Location {Name="Clarence High School", AddrLine1= "9625 Main St", City="Clarence", State="NY", ZipCode="14031"},
-                new Location {Name="Chef's Restaurant", AddrLine1= "291 Seneca St", City="Buffalo", State="NY", ZipCode="14204"},
-                new Location {Name="First Niagara Center", AddrLine1= "One Seneca Tower", City="Buffalo", State="NY", ZipCode="14203"}
+                new Location {Name="Clarence High School", Description="Clarence High School was founded in 1886 and is one of Western New York's highest rated schools, etc etc", AddrLine1= "9625 Main St", City="Clarence", State="NY", ZipCode="14031"},
+                new Location {Name="Chef's Restaurant", Description="Historic Italian restaurant offers traditional dining and banquet facilities.", AddrLine1= "291 Seneca St", City="Buffalo", State="NY", ZipCode="14204"},
+                new Location {Name="First Niagara Center", Description="The First Niagara Center, formerly known as HSBC Arena and Marine Midland Arena, is a multipurpose indoor arena located in downtown Buffalo", AddrLine1= "One Seneca Tower", City="Buffalo", State="NY", ZipCode="14203"}
             };
 
             locations.ForEach(l => { l.IsActive = true; context.Locations.Add(l); });

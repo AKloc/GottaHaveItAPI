@@ -10,6 +10,7 @@ namespace GottaHaveItAPI.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public string AddrLine1 { get; set; }
         public string AddrLine2 { get; set; }
         public string City { get; set; }

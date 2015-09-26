@@ -9,16 +9,16 @@ using GottaHaveItAPI.Models;
 
 namespace GottaHaveItAPI.Controllers
 {
-    public class ChannelsController : ApiController
+    public class LocationsController : ApiController
     {
         [HttpGet]
-        [Route("api/channels/")]
+        [Route("api/locations/")]
         public IHttpActionResult Get()
         {
             using (Contexts.GottaHaveItContext ctx = new Contexts.GottaHaveItContext())
             {
-                var query = ctx.Channels
-                    .Include(c => c.Events)
+                var query = ctx.Locations
+                    .Include(l => l.Events)
                     //.Include(e => e.)
                     .ToList();
 
@@ -28,15 +28,16 @@ namespace GottaHaveItAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/channels/{id}")]
+        [Route("api/locations/{id}")]
         public IHttpActionResult Get(int id)
         {
             using (Contexts.GottaHaveItContext ctx = new Contexts.GottaHaveItContext())
             {
-                //var query = from e in ctx.Events
-                //         select e;
-
-                var query = ctx.Channels.FirstOrDefault((c) => c.ID == id);
+                var query = ctx.Locations
+                .Include(l => l.Events)
+                //.Include(e => e.)
+                .FirstOrDefault((l) => l.ID == id);
+                
 
                 if (query == null)
                 {
