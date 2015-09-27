@@ -94,6 +94,7 @@
     <Content Include="Content\site.css" />
     <Content Include="partials\partial-channels.html" />
     <Content Include="partials\partial-channelDetails.html" />
+    <Content Include="partials\partial-about.html" />
     <Content Include="partials\partial-locationDetails.html" />
     <Content Include="partials\partial-eventDetails.html" />
     <Content Include="partials\partial-events.html" />

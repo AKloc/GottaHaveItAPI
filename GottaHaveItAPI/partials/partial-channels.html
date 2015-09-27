@@ -10,12 +10,14 @@
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Options</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="channel in Channels">
                 <td><b><a href="#/channels/{{channel.ID}}">{{channel.Name}}</a></b></td>
                 <td>{{channel.Description}}</td>
+                <td><button type="button" class="btn btn-success">Subscribe</button></td>
             </tr>
         </tbody>
     </table>

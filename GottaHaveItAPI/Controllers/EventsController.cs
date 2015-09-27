@@ -19,6 +19,7 @@ namespace GottaHaveItAPI.Controllers
             {
                 var query = ctx.Events
                     .Include(e => e.Location)
+                    .Include(e => e.ChannelMemberships.Select(cm => cm.Channel))
                     //.Include(e => e.)
                     .ToList();
 
@@ -39,6 +40,7 @@ namespace GottaHaveItAPI.Controllers
 
                 var query = ctx.Events
                 .Include(e => e.Location)
+                .Include(e => e.ChannelMemberships.Select(cm => cm.Channel))
                 //.Include(e => e.)
                 .FirstOrDefault((e) => e.ID == id); 
                 

@@ -19,6 +19,7 @@ namespace GottaHaveItAPI.Models
         public bool IsActive { get; set; }
 
         public virtual Location Location { get; set; }
+        public virtual ICollection<ChannelMembership> ChannelMemberships { get; set; }
 
     }
 }

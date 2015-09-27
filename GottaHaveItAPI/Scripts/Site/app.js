@@ -47,7 +47,8 @@ gottaHaveItApp.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'SearchController'
         })
         .state('about', {
-
+            url: '/about',
+            templateUrl: 'partials/partial-about.html'
         });        
 });
 

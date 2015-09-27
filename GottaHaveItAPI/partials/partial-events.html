@@ -12,6 +12,7 @@
                 <th>Description</th>
                 <th>Event Date</th>
                 <th>Location</th>
+                <th>Options</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
                 <td>{{event.Description}}</td>
                 <td>{{event.StartDate | date:'short'}}</td>
                 <td><a href="#/locations/{{event.Location.ID}}">{{event.Location.Name}}</a></td>
+                <td><button type="button" class="btn btn-success">Watch</button></td>
             </tr>
         </tbody>
     </table>

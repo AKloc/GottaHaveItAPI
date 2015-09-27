@@ -5,9 +5,33 @@
 </ol>
 
 <div>
-    Event Name: {{Event.Name}}
-    <br />
-    Event Description: {{Event.Description}}
-    <br />
-    Event Location: <a href="#/locations/{{Event.Location.ID}}">{{Event.Location.Name}}</a>
+    <h1>{{Event.Name}}</h1>
+    <h3>{{Event.Description}}</h3>
+    <h3>Starts at: {{Event.StartDate | date:'short'}}</h3>
+    <h3>Ends at: {{Event.EndDate | date:'short'}}</h3>
+    <h3><a href="#/locations/{{Event.Location.ID}}">{{Event.Location.Name}}</a></h3>
+
+    
+
+    <h4>Channels that include this event:</h4>
+    <div ng-show="Event.ChannelMemberships.length > 0">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Channel Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="channelMembership in Event.ChannelMemberships">
+                    <td><b><a href="#/channels/{{channelMembership.Channel.ID}}">{{channelMembership.Channel.Name}}</a></b></td>
+                    <td>{{channelMembership.Channel.Description}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="Event.ChannelMemberships.length == 0">
+        <h1>This event isn't included in any channels right now.</h1>
+    </div>
+
 </div>
