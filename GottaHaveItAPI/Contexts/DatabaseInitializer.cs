@@ -33,9 +33,10 @@ namespace GottaHaveItAPI.Contexts
         {
             var locations = new List<Location>
             {
-                new Location {Name="Clarence High School", Description="Clarence High School was founded in 1886 and is one of Western New York's highest rated schools, etc etc", AddrLine1= "9625 Main St", City="Clarence", State="NY", ZipCode="14031"},
-                new Location {Name="Chef's Restaurant", Description="Historic Italian restaurant offers traditional dining and banquet facilities.", AddrLine1= "291 Seneca St", City="Buffalo", State="NY", ZipCode="14204"},
-                new Location {Name="First Niagara Center", Description="The First Niagara Center, formerly known as HSBC Arena and Marine Midland Arena, is a multipurpose indoor arena located in downtown Buffalo", AddrLine1= "One Seneca Tower", City="Buffalo", State="NY", ZipCode="14203"}
+                new Location {Name="Clarence High School", Description="Clarence High School was founded in 1886 and is one of Western New York's highest rated schools, etc etc", AddrLine1= "9625 Main St", City="Clarence", State="NY", ZipCode="14031", PhoneNumber="7161111111"},
+                new Location {Name="Chef's Restaurant", Description="Historic Italian restaurant offers traditional dining and banquet facilities.", AddrLine1= "291 Seneca St", City="Buffalo", State="NY", ZipCode="14204", PhoneNumber="7168569187"},
+                new Location {Name="First Niagara Center", Description="The First Niagara Center, formerly known as HSBC Arena and Marine Midland Arena, is a multipurpose indoor arena located in downtown Buffalo", AddrLine1= "One Seneca Tower", AddrLine2="PO Box 90210", City="Buffalo", State="NY", ZipCode="14203"},
+                new Location {Name="Darien Lake Performing Art Center", Description="The First Niagara Center, formerly known as HSBC Arena and Marine Midland Arena, is a multipurpose indoor arena located in downtown Buffalo", AddrLine1= "9993 Allegheny Road",  City="Darien Center", State="NY", ZipCode="14040", PhoneNumber="2017440770"}
             };
 
             locations.ForEach(l => { l.IsActive = true; context.Locations.Add(l); });
@@ -111,6 +112,24 @@ namespace GottaHaveItAPI.Contexts
                     StartDate = DateTime.Parse("9/19/2016 7:00 PM"),
                     EndDate = DateTime.Parse("9/19/2016 11:00 PM"),
                     ImageUrl = "http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/0024/6268/brand.gif?itok=rHSarLBk"
+                },
+                new Event
+                {
+                    Name = "Paul McCartney",
+                    Description = "You may have heard of him...",
+                    LocationID = locations["First Niagara Center"],
+                    StartDate = DateTime.Parse("9/20/2016 7:00 PM"),
+                    EndDate = DateTime.Parse("9/20/2016 11:00 PM"),
+                    ImageUrl = "http://mediad.publicbroadcasting.net/p/nhpr/files/201305/paul-live1.jpg"
+                },
+                new Event
+                {
+                    Name = "Lady Gaga",
+                    Description = "Monster Ball Tour 3, with opening act SOMEOTHERBAND.",
+                    LocationID = locations["Darien Lake Performing Art Center"],
+                    StartDate = DateTime.Parse("9/29/2016 7:00 PM"),
+                    EndDate = DateTime.Parse("9/29/2016 11:00 PM"),
+                    ImageUrl = "http://thatgrapejuice.net/wp-content/uploads/2015/04/lady-gaga-icon-thatgrapejuice.jpg"
                 }
             };
 
@@ -147,6 +166,12 @@ namespace GottaHaveItAPI.Contexts
                 {
                     Name = "Sabres and Bandits Home Games",
                     Description = "Never miss a game from either the Bills or Bandits!",
+                    DateCreated = DateTime.Now
+                },
+                new Channel
+                {
+                    Name = "Buffalo Concerts",
+                    Description = "We track all of the big acts so that you won't have to.",
                     DateCreated = DateTime.Now
                 }
             };
@@ -211,6 +236,17 @@ namespace GottaHaveItAPI.Contexts
                 {
                     ChannelID = channels["Sabres and Bandits Home Games"],
                     EventID = events["Game 6: Toronto Maple Leafs at Buffalo Sabres"]
+                },
+                new ChannelMembership
+                {
+                    ChannelID = channels["Buffalo Concerts"],
+                    EventID = events["Paul McCartney"]
+                }
+                ,
+                new ChannelMembership
+                {
+                    ChannelID = channels["Buffalo Concerts"],
+                    EventID = events["Lady Gaga"]
                 }
             };
 

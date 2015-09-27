@@ -16,6 +16,11 @@ gottaHaveItApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: '/partials/partial-channels.html',
             controller: 'ChannelsController'
         })
+        .state('channelDetails', {
+            url: '/channels/{channelID}',
+            templateUrl: '/partials/partial-channelDetails.html',
+            controller: 'ChannelDetailsController'
+        })
         .state('events', {
             url: '/events',
             templateUrl: '/partials/partial-events.html',
@@ -85,6 +90,14 @@ gottaHaveItApp.controller('EventDetailsController', function ($scope, $http, $st
 gottaHaveItApp.controller('ChannelsController', function ($scope, $http) {
     $http.get("/api/channels").success(function (data) {
         $scope.Channels = data;
+    });
+});
+
+gottaHaveItApp.controller('ChannelDetailsController', function ($scope, $http, $stateParams) {
+    var channelID = $stateParams.channelID;
+
+    $http.get("/api/channels/" + channelID).success(function (data) {
+        $scope.Channel = data;
     });
 });
 

@@ -3,10 +3,24 @@
     <li class="active">Locations</li>
 </ol>
 
-<div ng-repeat="location in Locations">
-    Location Name: {{location.Name}}
-    <br />
-    Location Description: {{location.Description}}
-
-    <p></p>
+<div ng-show="Locations.length > 0">
+    <h1>Locations with upcoming events:</h1>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="location in Locations">
+                <td><b><a href="#/locations/{{location.ID}}">{{location.Name}}</a></b></td>
+                <td>{{location.Description}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-show="Locations.length == 0">
+    <h1>There aren't any locations that are currently active.</h1>
+    <h3>(MAYBE YOU WOULD LIKE TO CREATE AN ALERT WHEN ONE IS MADE AVAILABLE?)</h3>
 </div>

@@ -3,9 +3,28 @@
     <li class="active">Events</li>
 </ol>
 
-<div ng-repeat="event in Events">
-    Event Name: {{event.Name}}
-    <br />
-    Event Description: {{event.Description}}
-    <p></p>
+<div ng-show="Events.length > 0">
+    <h1>Upcoming Events:</h1>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Description</th>
+                <th>Event Date</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="event in Events">
+                <td><b><a href="#/events/{{event.ID}}">{{event.Name}}</a></b></td>
+                <td>{{event.Description}}</td>
+                <td>{{event.StartDate | date:'short'}}</td>
+                <td><a href="#/locations/{{event.Location.ID}}">{{event.Location.Name}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-show="Eventslength == 0">
+    <h1>There were no events that matched your search.</h1>
+    <h3>(MAYBE YOU WOULD LIKE TO CREATE AN ALERT WHEN ONE IS MADE AVAILABLE?)</h3>
 </div>

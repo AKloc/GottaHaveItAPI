@@ -3,9 +3,24 @@
     <li class="active">Channels</li>
 </ol>
 
-<div ng-repeat="channel in Channels">
-    Channel Name: {{channel.Name}}
-    <br />
-    Channel Description: {{channel.Description}}
-    <p></p>
+<div ng-show="Channels.length > 0">
+    <h1>Channels with upcoming events:</h1>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="channel in Channels">
+                <td><b><a href="#/channels/{{channel.ID}}">{{channel.Name}}</a></b></td>
+                <td>{{channel.Description}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-show="Channels.length == 0">
+    <h1>There aren't any locations that are currently active.</h1>
+    <h3>(MAYBE YOU WOULD LIKE TO CREATE AN ALERT WHEN ONE IS MADE AVAILABLE?)</h3>
 </div>

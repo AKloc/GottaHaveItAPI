@@ -18,7 +18,7 @@ namespace GottaHaveItAPI.Controllers
             using (Contexts.GottaHaveItContext ctx = new Contexts.GottaHaveItContext())
             {
                 var query = ctx.Channels
-                    .Include(c => c.Events)
+                    .Include(c => c.ChannelMemberships.Select(cm => cm.Event))
                     //.Include(e => e.)
                     .ToList();
 
@@ -33,10 +33,14 @@ namespace GottaHaveItAPI.Controllers
         {
             using (Contexts.GottaHaveItContext ctx = new Contexts.GottaHaveItContext())
             {
-                //var query = from e in ctx.Events
-                //         select e;
+                
+                var query = ctx.Channels
+                //.Include(c => c.)
+                .Include(c => c.ChannelMemberships.Select(cm => cm.Event))
+                .Include(c => c.ChannelMemberships.Select(cm => cm.Event.Location))
 
-                var query = ctx.Channels.FirstOrDefault((c) => c.ID == id);
+                //.Include(e => e.)
+                .FirstOrDefault((c) => c.ID == id);
 
                 if (query == null)
                 {

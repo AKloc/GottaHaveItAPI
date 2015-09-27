@@ -16,16 +16,17 @@
         </thead>
         <tbody>
             <tr ng-repeat="eventResult in SearchResults.eventResults">
-                <td><b>{{eventResult.Name}}</b></td>
+                <td><b><a href="#/events/{{eventResult.ID}}">{{eventResult.Name}}</a></b></td>
                 <td>{{eventResult.Description}}</td>
                 <td>{{eventResult.StartDate | date:'short'}}</td>
-                <td>{{eventResult.Location.Name}}</td>
+                <td><a href="#/locations/{{eventResult.Location.ID}}">{{eventResult.Location.Name}}</a></td>
             </tr>
         </tbody>
     </table>
 </div>
 <div ng-show="SearchResults.eventResults.length == 0">
-    <h1>There were no events that matched your search. (MAYBE YOU WOULD LIKE TO CREATE AN ALERT WHEN ONE IS MADE AVAILABLE?)</h1>
+    <h1>There were no events that matched your search.</h1>
+    <h3>(MAYBE YOU WOULD LIKE TO CREATE AN ALERT WHEN ONE IS MADE AVAILABLE?)</h3>
 </div>
 
 
@@ -40,12 +41,13 @@
         </thead>
         <tbody>
             <tr ng-repeat="channelResult in SearchResults.channelResults">
-                <td><b>{{channelResult.Name}}</b></td>
+                <td><b><a href="#/channels/{{channelResult.ID}}">{{channelResult.Name}}</a></b></td>
                 <td>{{channelResult.Description}}</td>
             </tr>
         </tbody>
     </table>
 </div>
 <div ng-show="SearchResults.channelResults.length == 0">
-    <h1>There were no event channels that matched your search. (MAYBE YOU WOULD LIKE TO CREATE AN ALERT WHEN ONE IS MADE AVAILABLE?)</h1>
+    <h1>There were no event channels that matched your search.</h1>
+    <h3>(MAYBE YOU WOULD LIKE TO CREATE AN ALERT WHEN ONE IS MADE AVAILABLE?)</h3>
 </div>

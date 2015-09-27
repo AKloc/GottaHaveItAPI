@@ -16,7 +16,8 @@ namespace GottaHaveItAPI.Models
         public DateTime? LastEditted { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual ICollection<Event> Events { get; set; }
+        //public virtual ICollection<Event> Events { get; set; }
+        public virtual ICollection<ChannelMembership> ChannelMemberships { get; set; }
 
         //Created By?
         //Last Editted By?
